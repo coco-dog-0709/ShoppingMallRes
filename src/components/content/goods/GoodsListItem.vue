@@ -1,6 +1,6 @@
 <template>
-  <div class="goods-item">
-    <img :src="goodsItem.show.img" alt="" />
+  <div class="goods-item" @click="goodsItemClick">
+    <img :src="showImage" alt="" @load="imgLoad" />
     <div class="info">
       <p class="title">{{ goodsItem.title }}</p>
       <span class="price">{{ goodsItem.price }}</span>
@@ -18,6 +18,25 @@ export default {
       default() {
         return {};
       },
+    },
+  },
+  methods: {
+    imgLoad() {
+      this.$bus.$emit("imageLoad");
+      // console.log(this.$bus);
+    },
+    goodsItemClick() {
+      this.$router.push({
+        path: "/detail", //两种方式   动态路由  和query
+        query: {
+          iid: this.goodsItem.iid,
+        },
+      });
+    },
+  },
+  computed: {
+    showImage() {
+      return this.goodsItem.image || this.goodsItem.show.img; //这里反过来就会报错
     },
   },
 };

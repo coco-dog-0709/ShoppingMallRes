@@ -1,6 +1,6 @@
 <template>
   <div ref="wrapper">
-    <div class="content">
+    <div>
       <slot></slot>
     </div>
   </div>
@@ -39,16 +39,21 @@ export default {
       // console.log(position);
       this.$emit("goodsListScroll", position);
     });
-    this.scroll.on("pullingUp", () => {
-      this.$emit("pullUp");
-    });
+    if (this.PullUpLoad) {
+      this.scroll.on("pullingUp", () => {
+        this.$emit("pullUp");
+      });
+    }
   },
   methods: {
     scrollTo(x, y, time) {
-      this.scroll.scrollTo(x, y, time);
+      this.scroll && this.scroll.scrollTo(x, y, time);
     },
     finishPullUp() {
-      this.scroll.finishPullUp();
+      this.scroll && this.scroll.finishPullUp();
+    },
+    refresh() {
+      this.scroll && this.scroll.refresh();
     },
   },
 };

@@ -1,8 +1,8 @@
 <template>
-  <swiper class="swiper">
+  <swiper class="homeSwiper">
     <swiper-item v-for="item in banner" :key="item.acm">
       <a :href="item.link">
-        <img :src="item.image" alt="" />
+        <img :src="item.image" alt="" @load="swiperImgLoad" />
       </a>
     </swiper-item>
   </swiper>
@@ -22,6 +22,11 @@ export default {
       default() {
         return [];
       },
+    },
+  },
+  methods: {
+    swiperImgLoad() {
+      this.$emit("homeSwiperImgLoad");
     },
   },
 };

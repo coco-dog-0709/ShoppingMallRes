@@ -52,14 +52,14 @@ export default {
       scrolling: false, // 是否正在滚动
     };
   },
-  // mounted: function () {
-  //   // 1.操作DOM, 在前后添加Slide
-  //   setTimeout(() => {
-  //     this.handleDom();
-  //     // 2.开启定时器
-  //     this.startTimer();
-  //   }, 200);
-  // },
+  mounted: function () {
+    // 1.操作DOM, 在前后添加Slide
+    setTimeout(() => {
+      this.handleDom();
+      // 2.开启定时器
+      this.startTimer();
+    }, 1000);
+  },
 
   methods: {
     /**
